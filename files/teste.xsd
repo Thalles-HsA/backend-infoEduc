@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.example.com/escola"
+            xmlns:escola="http://www.example.com/escola"
+            elementFormDefault="qualified">
+
+  <!-- Definição do tipo básico para o nome -->
+  <xsd:simpleType name="tipoNome">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="50"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo básico para o sobrenome -->
+  <xsd:simpleType name="tipoSobrenome">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="50"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo básico para o telefone -->
+  <xsd:simpleType name="tipoTelefone">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{10,11}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo básico para o email -->
+  <xsd:simpleType name="tipoEmail">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="5"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo básico para o CEP -->
+  <xsd:simpleType name="tipoCEP">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{5}-\d{3}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo básico para o CPF -->
+  <xsd:simpleType name="tipoCPF">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{3}\.\d{3}\.\d{3}-\d{2}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo básico para a data -->
+  <xsd:simpleType name="tipoData">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{4}-\d{2}-\d{2}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Definição do tipo complexo para o endereço -->
+  <xsd:complexType name="tipoEndereco">
+    <xsd:sequence>
+      <xsd:element name="logradouro" type="xsd:string"/>
+      <xsd:element name="numero" type="xsd:string"/>
+      <xsd:element name="complemento" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bairro" type="xsd:string"/>
+      <xsd:element name="cidade" type="xsd:string"/>
+      <xsd:element name="estado" type="xsd:string"/>
+      <xsd:element name="cep" type="escola:tipoCEP"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- Definição do tipo complexo para o aluno -->
+  <xsd:complexType name="tipoAluno">
+    <xsd:sequence>
+      <xsd:element name="nome" type="escola:tipoNome"/>
+<xsd:element name="sobrenome" type="escola:tipoSobrenome"/>
+<xsd:element name="cpf" type="escola:tipoCPF"/>
+<xsd:element name="dataNascimento" type="escola:tipoData"/>
+<xsd:element name="telefone" type="escola:tipoTelefone"/>
+<xsd:element name="email" type="escola:tipoEmail"/>
+<xsd:element name="endereco" type="escola:tipoEndereco"/>
+<xsd:element name="turma" type="xsd:string"/>
+<xsd:element name="responsavel" type="escola:tipoResponsavel"/>
+</xsd:sequence>
+</xsd:complexType>
+
+  <!-- Definição do tipo complexo para o responsável -->
+<xsd:complexType name="tipoResponsavel">
+<xsd:sequence>
+<xsd:element name="nome" type="escola:tipoNome"/>
+<xsd:element name="sobrenome" type="escola:tipoSobrenome"/>
+<xsd:element name="cpf" type="escola:tipoCPF"/>
+<xsd:element name="dataNascimento" type="escola:tipoData"/>
+<xsd:element name="telefone" type="escola:tipoTelefone"/>
+<xsd:element name="email" type="escola:tipoEmail"/>
+<xsd:element name="endereco" type="escola:tipoEndereco"/>
+</xsd:sequence>
+</xsd:complexType>
+
+  <!-- Definição do elemento raiz para a escola -->
+<xsd:element name="escola">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="nome" type="xsd:string"/>
+<xsd:element name="endereco" type="escola:tipoEndereco"/>
+<xsd:element name="diretor" type="escola:tipoResponsavel"/>
+<xsd:element name="coordenador" type="escola:tipoResponsavel"/>
+<xsd:element name="professor" type="escola:tipoResponsavel"/>
+<xsd:element name="aluno" type="escola:tipoAluno" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>
