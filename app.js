@@ -13,7 +13,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
 // Solve CORS
-app.use(cors({ credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({ credentials: true, origin: 'https://frontend-info-educ.herokuapp.com'}));
 
 // db connection
 require("./config/db.js");
