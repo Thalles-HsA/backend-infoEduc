@@ -18,7 +18,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 require("./config/db.js");
 
 app.get("/", (req, res) => {
-  res.send("API Working!");
+  res.send("API funcionando - Construida por Thalles Henrique");
 });
 
 const router = require("./routes/Router")
