@@ -17,6 +17,10 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 // db connection
 require("./config/db.js");
 
+app.get("/", (req, res) => {
+  res.send("API Working!");
+});
+
 const router = require("./routes/Router")
 
 app.use(router)
