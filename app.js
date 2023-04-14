@@ -7,8 +7,6 @@ const fs = require('fs');
 const cors = require("cors")
 
 const port = process.env.PORT;
-const isProduction = process.env.NODE_ENV === 'production';
-
 
 const app = express();
 
