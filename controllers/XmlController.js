@@ -7,14 +7,16 @@ const mongoose = require("mongoose");
 // Insert a Xml
 const insertXml = async (req, res) => {
 
-  const { title } = req.body;
+  const { title, validado } = req.body;
   const xml = req.file.filename;
 
   // Create xml
   const newXml = await Xml.create({
     xml,
     title,
+    validado,
     data: new Date()
+
   });
 
   // If user was photo sucessfully, return data

@@ -26,6 +26,8 @@ const validarXML = async (req, res, next) => {
     })),
   };
 
+  console.log(validationResult)
+
  
   if (!xmlDoc.validate(xsdDoc)) {
     const files = fs.readdirSync('uploads/');

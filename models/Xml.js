@@ -5,6 +5,7 @@ const xmlSchema = new Schema(
   {
     xml: String,
     title: String,
+    validado: Boolean,
     data: {
         type: Date,
         default: Date.now

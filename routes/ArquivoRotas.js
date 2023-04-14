@@ -14,7 +14,12 @@ const { validarXML } = require("../middlewares/validaXml")
 
 
 //Routes
-router.post('/validate', xmlUpload.single("xml"), validarXML, insertXml);
+// router.post('/validate', xmlUpload.single("xml"), console.log("validando"), validarXML, insertXml);
+router.post('/validate', xmlUpload.single("xml"), (req, res, next) => {
+    console.log("validando");
+    validarXML(req, res, next);
+  }, insertXml);
+router.post('/salvar', xmlUpload.single("xml"), insertXml);
 router.get("/", getAllXml )
 router.get("/:id", getXml)
 router.get("/download/:id", downloadXml)
